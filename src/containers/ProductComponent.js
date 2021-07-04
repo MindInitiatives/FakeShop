@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 
 const ProductComponent = () => {
     const products = useSelector(state => state.allProducts.products);
+    if (products != null) {
     const renderList = products.map((product) => {
         const {id, title, image, price, category} = product;
         return(
@@ -25,6 +26,7 @@ const ProductComponent = () => {
                 </Link>
             </div>
             );
+            
     })
 
 
@@ -33,6 +35,8 @@ const ProductComponent = () => {
        {renderList}
        </>
     );
+    
+};
 };
 
 export default ProductComponent;

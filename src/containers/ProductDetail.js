@@ -3,6 +3,7 @@ import {useParams} from 'react-router-dom'
 import axios from  'axios';
 import { useDispatch, useSelector } from "react-redux";
 import { selectedProduct, removeSelectedProduct } from "../redux/actions/productActions";
+import { ActionTypes } from "../redux/constants/action-types";
 
 
 const ProductDetail = () => {
@@ -16,6 +17,10 @@ const ProductDetail = () => {
         const response = await axios
         .get(`https://fakestoreapi.com/products/${productId}`)
         .catch((err) => {
+            dispatch( {
+                type: ActionTypes.PRODUCTS_ERROR,
+                payload: err,
+            })
             console.log("Err", err);
         });
 
